@@ -169,12 +169,23 @@
     #galeria .section-title { color: #fff; }
     #galeria .section-subtitle { color: rgba(255,255,255,.5); }
 
+    .gallery-wrapper { position: relative; max-width: 1300px; margin: 0 auto; }
     .gallery-track {
       display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
       padding-bottom: 1rem; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      max-width: 1300px; margin: 0 auto;
+      scroll-behavior: smooth;
     }
     .gallery-track::-webkit-scrollbar { display: none; }
+    .gallery-btn {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+      width: 48px; height: 48px; border-radius: 50%; border: none;
+      background: rgba(255,255,255,.15); color: #fff; font-size: 1.4rem;
+      cursor: pointer; backdrop-filter: blur(8px); transition: background .2s;
+    }
+    .gallery-btn:hover { background: rgba(255,255,255,.35); }
+    .gallery-btn-left { left: -24px; }
+    .gallery-btn-right { right: -24px; }
+    @media (max-width: 1350px) { .gallery-btn-left { left: 8px; } .gallery-btn-right { right: 8px; } }
     .gallery-thumb {
       flex: 0 0 280px; aspect-ratio: 3/4; border-radius: var(--radius-sm); overflow: hidden;
       scroll-snap-align: start; cursor: pointer; position: relative;
@@ -373,7 +384,7 @@
     </div>
   </div>
   <div class="hero-visual">
-    <img class="hero-img-main" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&h=1000&fit=crop" alt="Nowoczesna kuchnia na wymiar">
+    <img class="hero-img-main" src="https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?w=900&h=1000&fit=crop" alt="Nowoczesna kuchnia na wymiar">
     <img class="hero-img-float" src="https://images.unsplash.com/photo-1617104678098-de229db51175?w=400&h=300&fit=crop" alt="Szafa wnękowa">
   </div>
 </section>
@@ -464,7 +475,7 @@
   <p class="section-subtitle">Wybrane projekty, z których jesteśmy szczególnie dumni.</p>
   <div class="portfolio-grid">
     <div class="portfolio-item tall reveal" data-portfolio="0">
-      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=900&fit=crop" alt="Kuchnia na wymiar">
+      <img src="https://images.unsplash.com/photo-1556185781-a47769abb7ee?w=600&h=900&fit=crop" alt="Kuchnia na wymiar">
       <div class="portfolio-overlay">
         <span class="tag">Kuchnia</span>
         <h3>Kuchnia z wyspą</h3>
@@ -519,17 +530,21 @@
   <div class="section-label">Galeria</div>
   <h2 class="section-title">Zdjęcia z realizacji</h2>
   <p class="section-subtitle">Prawdziwe zdjęcia z naszych montaży — zobacz efekty naszej pracy.</p>
-  <div class="gallery-track" id="galleryTrack">
-    <div class="gallery-thumb" data-idx="0"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=670&fit=crop" alt="Kuchnia biała z wyspą"></div>
-    <div class="gallery-thumb" data-idx="1"><img src="https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?w=500&h=670&fit=crop" alt="Kuchnia w zabudowie"></div>
-    <div class="gallery-thumb" data-idx="2"><img src="https://images.unsplash.com/photo-1617104678098-de229db51175?w=500&h=670&fit=crop" alt="Szafa wnękowa"></div>
-    <div class="gallery-thumb" data-idx="3"><img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&h=670&fit=crop" alt="Garderoba"></div>
-    <div class="gallery-thumb" data-idx="4"><img src="https://images.unsplash.com/photo-1565183997392-2f6f122e5912?w=500&h=670&fit=crop" alt="Kuchnia drewniana"></div>
-    <div class="gallery-thumb" data-idx="5"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=670&fit=crop" alt="Meble do salonu"></div>
-    <div class="gallery-thumb" data-idx="6"><img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500&h=670&fit=crop" alt="Szuflady kuchenne"></div>
-    <div class="gallery-thumb" data-idx="7"><img src="https://images.unsplash.com/photo-1599619351208-3e6c839d6828?w=500&h=670&fit=crop" alt="Komoda"></div>
-    <div class="gallery-thumb" data-idx="8"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&h=670&fit=crop" alt="Szafka nocna"></div>
-    <div class="gallery-thumb" data-idx="9"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=500&h=670&fit=crop" alt="Meble łazienkowe"></div>
+  <div class="gallery-wrapper">
+    <button class="gallery-btn gallery-btn-left" id="galleryLeft" aria-label="Przewiń w lewo">&#8249;</button>
+    <button class="gallery-btn gallery-btn-right" id="galleryRight" aria-label="Przewiń w prawo">&#8250;</button>
+    <div class="gallery-track" id="galleryTrack">
+      <div class="gallery-thumb" data-idx="0"><img src="https://images.unsplash.com/photo-1556185781-a47769abb7ee?w=500&h=670&fit=crop" alt="Kuchnia biała z wyspą"></div>
+      <div class="gallery-thumb" data-idx="1"><img src="https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?w=500&h=670&fit=crop" alt="Kuchnia w zabudowie"></div>
+      <div class="gallery-thumb" data-idx="2"><img src="https://images.unsplash.com/photo-1617104678098-de229db51175?w=500&h=670&fit=crop" alt="Szafa wnękowa"></div>
+      <div class="gallery-thumb" data-idx="3"><img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&h=670&fit=crop" alt="Garderoba"></div>
+      <div class="gallery-thumb" data-idx="4"><img src="https://images.unsplash.com/photo-1565183997392-2f6f122e5912?w=500&h=670&fit=crop" alt="Kuchnia drewniana"></div>
+      <div class="gallery-thumb" data-idx="5"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=670&fit=crop" alt="Meble do salonu"></div>
+      <div class="gallery-thumb" data-idx="6"><img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500&h=670&fit=crop" alt="Szuflady kuchenne"></div>
+      <div class="gallery-thumb" data-idx="7"><img src="https://images.unsplash.com/photo-1599619351208-3e6c839d6828?w=500&h=670&fit=crop" alt="Komoda"></div>
+      <div class="gallery-thumb" data-idx="8"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&h=670&fit=crop" alt="Szafka nocna"></div>
+      <div class="gallery-thumb" data-idx="9"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=500&h=670&fit=crop" alt="Meble łazienkowe"></div>
+    </div>
   </div>
 </section>
 
@@ -747,6 +762,15 @@
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') document.getElementById('lightboxPrev').click();
     if (e.key === 'ArrowRight') document.getElementById('lightboxNext').click();
+  });
+
+  // Gallery scroll buttons
+  const track = document.getElementById('galleryTrack');
+  document.getElementById('galleryLeft').addEventListener('click', () => {
+    track.scrollBy({ left: -580, behavior: 'smooth' });
+  });
+  document.getElementById('galleryRight').addEventListener('click', () => {
+    track.scrollBy({ left: 580, behavior: 'smooth' });
   });
 </script>
 
