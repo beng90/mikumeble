@@ -38,7 +38,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 clamp(1.25rem, 5vw, 4rem); height: 68px;
     }
-    .logo { font-weight: 900; font-size: 1.35rem; color: var(--primary); letter-spacing: -.5px; }
+    .logo { font-weight: 900; font-size: 1.35rem; color: var(--primary); letter-spacing: -.5px; text-decoration: none; }
     .logo small { font-weight: 500; font-size: .65rem; color: var(--text-muted); display: block; letter-spacing: 2px; text-transform: uppercase; line-height: 1; margin-top: -2px; }
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a { text-decoration: none; color: var(--text-muted); font-size: .88rem; font-weight: 500; transition: color .2s; }
@@ -48,6 +48,7 @@
       border-radius: 50px; font-weight: 600; transition: background .2s, transform .2s;
     }
     .nav-cta:hover { background: var(--primary-dark) !important; transform: translateY(-1px); }
+    .nav-phone { display: flex; align-items: center; gap: .4rem; color: var(--primary) !important; font-weight: 700; font-size: .92rem; }
 
     .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
@@ -57,9 +58,7 @@
       min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center;
       padding: 68px 0 0; overflow: hidden;
     }
-    .hero-content {
-      padding: clamp(2rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
-    }
+    .hero-content { padding: clamp(2rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem); }
     .hero-badge {
       display: inline-flex; align-items: center; gap: .5rem;
       background: var(--bg-warm); border: 1px solid var(--border);
@@ -88,12 +87,8 @@
     .hero-stat strong { display: block; font-size: 1.6rem; font-weight: 800; color: var(--primary); }
     .hero-stat span { font-size: .8rem; color: var(--text-muted); font-weight: 500; }
 
-    .hero-visual {
-      position: relative; height: 100%; min-height: 500px;
-    }
-    .hero-img-main {
-      width: 100%; height: 100%; object-fit: cover;
-    }
+    .hero-visual { position: relative; height: 100%; min-height: 500px; }
+    .hero-img-main { width: 100%; height: 100%; object-fit: cover; }
     .hero-img-float {
       position: absolute; bottom: 3rem; left: -3rem; width: 220px; height: 160px; object-fit: cover;
       border-radius: var(--radius); box-shadow: var(--shadow-lg); border: 4px solid #fff;
@@ -105,11 +100,21 @@
     section { padding: clamp(4rem, 8vw, 6rem) clamp(1.25rem, 5vw, 4rem); }
     .section-label { text-transform: uppercase; font-size: .75rem; font-weight: 700; letter-spacing: 2.5px; color: var(--primary); margin-bottom: .75rem; text-align: center; }
     .section-title { text-align: center; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; margin-bottom: .5rem; letter-spacing: -.02em; }
-    .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 3.5rem; max-width: 520px; margin-inline: auto; font-size: .98rem; }
+    .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 3.5rem; max-width: 580px; margin-inline: auto; font-size: .98rem; line-height: 1.7; }
+
+    /* ── ABOUT BANNER ── */
+    .about-banner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .about-banner img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .about-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -.01em; }
+    .about-text p { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.75; font-size: .95rem; }
+    .about-text .btn-primary { margin-top: .5rem; }
 
     /* ── FEATURES ── */
     .features { background: var(--bg-warm); }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
     .feature-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 2rem; transition: all .3s;
@@ -121,8 +126,22 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1.5rem; margin-bottom: 1.25rem;
     }
-    .feature-card h3 { font-size: 1.1rem; margin-bottom: .5rem; font-weight: 700; }
-    .feature-card p { color: var(--text-muted); font-size: .9rem; line-height: 1.6; }
+    .feature-card h3 { font-size: 1.05rem; margin-bottom: .5rem; font-weight: 700; }
+    .feature-card p { color: var(--text-muted); font-size: .88rem; line-height: 1.65; }
+
+    /* ── SERVICES / KOMPLETNY PROJEKT ── */
+    .services-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .services-split.reverse { direction: rtl; }
+    .services-split.reverse > * { direction: ltr; }
+    .services-text h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; }
+    .services-text p { color: var(--text-muted); line-height: 1.75; font-size: .93rem; margin-bottom: 1rem; }
+    .services-text ul { list-style: none; margin-top: 1rem; }
+    .services-text ul li { padding: .4rem 0; padding-left: 1.5rem; position: relative; color: var(--text-muted); font-size: .93rem; }
+    .services-text ul li::before { content: '✓'; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+    .services-img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); }
 
     /* ── PORTFOLIO ── */
     .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1200px; margin: 0 auto; }
@@ -203,6 +222,19 @@
     .process-step h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
     .process-step p { font-size: .85rem; color: var(--text-muted); max-width: 220px; margin: 0 auto; }
 
+    /* ── MATERIALS BANNER ── */
+    .materials-banner {
+      background: var(--dark); color: #fff; border-radius: var(--radius);
+      max-width: 1100px; margin: 0 auto; padding: 3.5rem; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .materials-banner h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 1rem; }
+    .materials-banner p { color: rgba(255,255,255,.65); line-height: 1.75; font-size: .93rem; margin-bottom: .75rem; }
+    .materials-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .5rem .75rem; }
+    .materials-list li { color: rgba(255,255,255,.8); font-size: .88rem; padding-left: 1.3rem; position: relative; }
+    .materials-list li::before { content: '◆'; position: absolute; left: 0; color: var(--primary-light); font-size: .6rem; top: .3rem; }
+    .materials-img { width: 100%; border-radius: var(--radius-sm); }
+
     /* ── CONTACT ── */
     #kontakt { background: var(--surface); }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1000px; margin: 0 auto; align-items: start; }
@@ -234,16 +266,43 @@
       transition: all .25s; align-self: flex-start;
     }
     .submit-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(165,124,40,.25); }
+    .form-note { font-size: .78rem; color: var(--text-muted); margin-top: -.25rem; }
     .form-success { display: none; text-align: center; padding: 3rem 1rem; }
     .form-success.show { display: block; }
     .form-success h3 { color: var(--primary); margin-bottom: .5rem; font-size: 1.3rem; }
 
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      text-align: center; padding: 4rem 2rem; color: #fff;
+    }
+    .cta-band h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: .75rem; }
+    .cta-band p { opacity: .85; margin-bottom: 2rem; font-size: 1.05rem; }
+    .cta-band .btn-white {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .9rem 2.4rem; background: #fff; color: var(--primary-dark);
+      border-radius: 50px; font-weight: 700; font-size: .95rem; text-decoration: none;
+      transition: all .25s;
+    }
+    .cta-band .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+
     /* ── FOOTER ── */
     footer {
-      background: var(--dark); color: rgba(255,255,255,.5); text-align: center;
-      padding: 2.5rem 1rem; font-size: .82rem;
+      background: var(--dark); color: rgba(255,255,255,.4); padding: 3rem 2rem 2rem;
     }
-    footer strong { color: var(--primary-light); }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      max-width: 1100px; margin: 0 auto; padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-brand .logo { color: var(--primary-light); font-size: 1.3rem; }
+    .footer-brand p { margin-top: .75rem; font-size: .85rem; line-height: 1.7; color: rgba(255,255,255,.4); }
+    footer h4 { color: rgba(255,255,255,.7); font-size: .85rem; font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: .6rem; }
+    .footer-links a { color: rgba(255,255,255,.4); text-decoration: none; font-size: .85rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--primary-light); }
+    .footer-bottom { max-width: 1100px; margin: 1.5rem auto 0; font-size: .8rem; text-align: center; }
 
     /* ── MOBILE ── */
     @media (max-width: 900px) {
@@ -251,9 +310,12 @@
       .hero-visual { min-height: 350px; order: -1; }
       .hero-img-float { display: none; }
       .hero-stats { gap: 1.5rem; }
+      .about-banner, .services-split, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .services-split.reverse { direction: ltr; }
       .portfolio-grid { grid-template-columns: 1fr 1fr; }
       .portfolio-item.tall { grid-row: auto; aspect-ratio: 4/3; }
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .materials-banner { grid-template-columns: 1fr; padding: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     }
     @media (max-width: 640px) {
       .nav-links {
@@ -267,6 +329,7 @@
       .portfolio-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .gallery-thumb { flex: 0 0 220px; }
+      .materials-list { grid-template-columns: 1fr; }
     }
 
     /* ── SCROLL ANIMATIONS ── */
@@ -278,13 +341,15 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">MikuMeble<small>meble na wymiar</small></div>
+  <a href="#" class="logo">MikuMeble<small>meble na wymiar</small></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#o-nas">O nas</a></li>
+    <li><a href="#oferta">Oferta</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#galeria">Galeria</a></li>
     <li><a href="#proces">Jak działamy</a></li>
-    <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+    <li><a href="tel:+48600000000" class="nav-phone">📞 600 000 000</a></li>
+    <li><a href="#kontakt" class="nav-cta">Bezpłatna wycena</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -296,9 +361,9 @@
   <div class="hero-content">
     <div class="hero-badge">Przyjmujemy zamówienia</div>
     <h1>Tworzymy meble,<br>które <span>opowiadają<br>Twoją historię</span></h1>
-    <p class="hero-desc">Projektujemy, wykonujemy i montujemy meble na wymiar. Od wizji po gotowe wnętrze — dbamy o każdy detal.</p>
+    <p class="hero-desc">Projektujemy, wykonujemy i montujemy meble na wymiar. Od wizji po gotowe wnętrze — dbamy o każdy detal, a każdorazowe zmiany nie są dla nas żadnym problemem.</p>
     <div class="hero-actions">
-      <a href="#kontakt" class="btn-primary">Zapytaj o wycenę &rarr;</a>
+      <a href="#kontakt" class="btn-primary">Umów się na pomiar &rarr;</a>
       <a href="#galeria" class="btn-secondary">Zobacz realizacje</a>
     </div>
     <div class="hero-stats">
@@ -314,30 +379,80 @@
 </section>
 
 <!-- O NAS -->
-<section id="o-nas" class="features">
+<section id="o-nas">
+  <div class="about-banner reveal">
+    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=500&fit=crop" alt="Warsztat meblarski">
+    <div class="about-text">
+      <h2>Nowoczesne meble<br>dla Twojego domu</h2>
+      <p>Oferujemy wysokiej jakości meble na wymiar. Wykonujemy meble w stylu klasycznym, modernistycznym, skandynawskim, rustykalnym i innych — w zależności od potrzeb i preferencji klienta.</p>
+      <p>Podczas całego procesu realizacji — od zamówienia, przez tworzenie projektu, aż do montażu — jesteśmy do dyspozycji zamawiającego. Dla nas liczy się idealne wnętrze oraz zadowolony klient!</p>
+      <a href="#kontakt" class="btn-primary">Porozmawiajmy &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- DLACZEGO MY -->
+<section class="features">
   <div class="section-label">Dlaczego my</div>
-  <h2 class="section-title">Meble z pasją i precyzją</h2>
+  <h2 class="section-title">Jakość, styl i precyzja</h2>
   <p class="section-subtitle">Łączymy rzemiosło z nowoczesnym designem, tworząc przestrzenie dopasowane do Twojego życia.</p>
   <div class="features-grid">
     <div class="feature-card reveal">
       <div class="feature-icon">📐</div>
       <h3>Indywidualny projekt</h3>
-      <p>Każdy mebel projektujemy od zera, idealnie dopasowując go do Twojej przestrzeni i stylu życia.</p>
+      <p>Każdy mebel projektujemy od zera. Efektem jest fotorealistyczny projekt 3D z uwzględnieniem wszystkich szczegółów i oświetlenia.</p>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">🪵</div>
-      <h3>Premium materiały</h3>
-      <p>Pracujemy wyłącznie z certyfikowanymi materiałami najwyższej jakości od sprawdzonych dostawców.</p>
+      <h3>Sprawdzone materiały</h3>
+      <p>Pracujemy wyłącznie z certyfikowanymi materiałami i podzespołami najwyższej jakości od sprawdzonych dostawców.</p>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">🔧</div>
-      <h3>Precyzyjny montaż</h3>
-      <p>Nasz doświadczony zespół montażowy gwarantuje perfekcyjne wykończenie i dbałość o każdy detal.</p>
+      <h3>Perfekcyjny montaż</h3>
+      <p>Zwracamy szczególną uwagę na idealne przyleganie, równe odstępy i kompensację nierówności ścian — by całość wyglądała perfekcyjnie.</p>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">🎨</div>
       <h3>Wizualizacja 3D</h3>
-      <p>Zobaczysz swoje meble jeszcze przed produkcją dzięki fotorealistycznym wizualizacjom.</p>
+      <p>Zobaczysz swoje meble jeszcze przed produkcją. Projekt poprawiamy do uzyskania Twojej pełnej satysfakcji!</p>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA - KOMPLETNY PROJEKT -->
+<section id="oferta">
+  <div class="services-split reveal">
+    <img class="services-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=450&fit=crop" alt="Kompletny projekt kuchni">
+    <div class="services-text">
+      <h3>Kompletny projekt wnętrza</h3>
+      <p>Projektowanie wnętrza, rozmieszczenie szafek oraz sprzętów AGD to proces, który ma bezpośredni wpływ na późniejszą wygodę użytkowania. Rozumiemy to doskonale, dlatego zwracamy szczególną uwagę na ten etap.</p>
+      <p>Możemy stworzyć projekt całkowicie sami lub wspólnie z Tobą — Ty decydujesz!</p>
+      <ul>
+        <li>Pomiar w Twoim domu</li>
+        <li>Fotorealistyczna wizualizacja 3D</li>
+        <li>Poprawki do pełnej satysfakcji</li>
+        <li>Dobór materiałów i kolorystyki</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SPRAWDZONE MATERIAŁY -->
+<section>
+  <div class="services-split reverse reveal">
+    <img class="services-img" src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&h=450&fit=crop" alt="Materiały meblowe">
+    <div class="services-text">
+      <h3>Sprawdzone materiały i podzespoły</h3>
+      <p>Stosujemy wyłącznie komponenty renomowanych producentów, które gwarantują trwałość i bezpieczeństwo na lata. Każdy element dobieramy pod kątem wytrzymałości i estetyki.</p>
+      <ul>
+        <li>Płyty meblowe klasy E1</li>
+        <li>Okucia i prowadnice premium</li>
+        <li>Blaty z kamienia i drewna</li>
+        <li>Systemy cichy domyk</li>
+        <li>Oświetlenie LED</li>
+        <li>Fronty lakierowane i laminowane</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -345,8 +460,8 @@
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="section-label">Portfolio</div>
-  <h2 class="section-title">Wybrane realizacje</h2>
-  <p class="section-subtitle">Projekty, z których jesteśmy szczególnie dumni.</p>
+  <h2 class="section-title">Nasze realizacje</h2>
+  <p class="section-subtitle">Wybrane projekty, z których jesteśmy szczególnie dumni.</p>
   <div class="portfolio-grid">
     <div class="portfolio-item tall reveal">
       <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=900&fit=crop" alt="Kuchnia">
@@ -405,36 +520,16 @@
   <h2 class="section-title">Zdjęcia z realizacji</h2>
   <p class="section-subtitle">Prawdziwe zdjęcia z naszych montaży — zobacz efekty naszej pracy.</p>
   <div class="gallery-track" id="galleryTrack">
-    <div class="gallery-thumb" data-idx="0">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&h=670&fit=crop" alt="Wnętrze 1">
-    </div>
-    <div class="gallery-thumb" data-idx="1">
-      <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=500&h=670&fit=crop" alt="Wnętrze 2">
-    </div>
-    <div class="gallery-thumb" data-idx="2">
-      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=670&fit=crop" alt="Kuchnia detale">
-    </div>
-    <div class="gallery-thumb" data-idx="3">
-      <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500&h=670&fit=crop" alt="Wnętrze 3">
-    </div>
-    <div class="gallery-thumb" data-idx="4">
-      <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=500&h=670&fit=crop" alt="Łazienka detale">
-    </div>
-    <div class="gallery-thumb" data-idx="5">
-      <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&h=670&fit=crop" alt="Garderoba detale">
-    </div>
-    <div class="gallery-thumb" data-idx="6">
-      <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&h=670&fit=crop" alt="Sypialnia detale">
-    </div>
-    <div class="gallery-thumb" data-idx="7">
-      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=670&fit=crop" alt="Salon detale">
-    </div>
-    <div class="gallery-thumb" data-idx="8">
-      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&h=670&fit=crop" alt="Wnętrze 4">
-    </div>
-    <div class="gallery-thumb" data-idx="9">
-      <img src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=500&h=670&fit=crop" alt="Biuro detale">
-    </div>
+    <div class="gallery-thumb" data-idx="0"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&h=670&fit=crop" alt="Wnętrze 1"></div>
+    <div class="gallery-thumb" data-idx="1"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=500&h=670&fit=crop" alt="Wnętrze 2"></div>
+    <div class="gallery-thumb" data-idx="2"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=670&fit=crop" alt="Kuchnia detale"></div>
+    <div class="gallery-thumb" data-idx="3"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500&h=670&fit=crop" alt="Wnętrze 3"></div>
+    <div class="gallery-thumb" data-idx="4"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=500&h=670&fit=crop" alt="Łazienka detale"></div>
+    <div class="gallery-thumb" data-idx="5"><img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&h=670&fit=crop" alt="Garderoba detale"></div>
+    <div class="gallery-thumb" data-idx="6"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&h=670&fit=crop" alt="Sypialnia detale"></div>
+    <div class="gallery-thumb" data-idx="7"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=670&fit=crop" alt="Salon detale"></div>
+    <div class="gallery-thumb" data-idx="8"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&h=670&fit=crop" alt="Wnętrze 4"></div>
+    <div class="gallery-thumb" data-idx="9"><img src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=500&h=670&fit=crop" alt="Biuro detale"></div>
   </div>
 </section>
 
@@ -454,25 +549,32 @@
   <div class="process-steps">
     <div class="process-step reveal">
       <div class="step-num">1</div>
-      <h3>Konsultacja</h3>
-      <p>Poznajemy Twoje potrzeby, mierzymy przestrzeń i doradzamy rozwiązania.</p>
+      <h3>Pomiar i konsultacja</h3>
+      <p>Przyjeżdżamy do Ciebie, mierzymy przestrzeń i poznajemy Twoje oczekiwania.</p>
     </div>
     <div class="process-step reveal">
       <div class="step-num">2</div>
-      <h3>Projekt i wizualizacja</h3>
-      <p>Tworzymy projekt 3D, dobieramy materiały i uzgadniamy szczegóły.</p>
+      <h3>Projekt 3D</h3>
+      <p>Tworzymy fotorealistyczną wizualizację. Poprawiamy do pełnej satysfakcji.</p>
     </div>
     <div class="process-step reveal">
       <div class="step-num">3</div>
       <h3>Produkcja</h3>
-      <p>Wykonujemy meble w naszym warsztacie z najwyższą starannością.</p>
+      <p>Wykonujemy meble w naszym warsztacie z najwyższą starannością i precyzją.</p>
     </div>
     <div class="process-step reveal">
       <div class="step-num">4</div>
       <h3>Montaż</h3>
-      <p>Dostarczamy i montujemy meble, dbając o perfekcyjne wykończenie.</p>
+      <p>Dostarczamy i montujemy — już po kilkunastu godzinach cieszysz się nowym wnętrzem!</p>
     </div>
   </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>Zainteresowany? Umów się na bezpłatny pomiar!</h2>
+  <p>Zadzwoń lub napisz — przygotujemy wycenę dopasowaną do Twojego budżetu.</p>
+  <a href="#kontakt" class="btn-white">Skontaktuj się z nami &rarr;</a>
 </section>
 
 <!-- KONTAKT -->
@@ -498,18 +600,18 @@
       </div>
       <div class="contact-detail">
         <div class="icon">🕐</div>
-        <div><strong>Godziny pracy</strong><span>Pon–Pt: 8:00–17:00</span></div>
+        <div><strong>Godziny pracy</strong><span>Pon–Pt: 8:00–17:00, Sob: 9:00–13:00</span></div>
       </div>
     </div>
     <div class="reveal">
       <form class="contact-form" id="contactForm">
         <div class="form-row">
           <div class="field">
-            <label for="name">Imię i nazwisko</label>
+            <label for="name">Imię i nazwisko *</label>
             <input type="text" id="name" name="name" required placeholder="Jan Kowalski">
           </div>
           <div class="field">
-            <label for="email">E-mail</label>
+            <label for="email">E-mail *</label>
             <input type="email" id="email" name="email" required placeholder="jan@example.pl">
           </div>
         </div>
@@ -533,9 +635,10 @@
           </div>
         </div>
         <div class="field">
-          <label for="message">Opis projektu</label>
+          <label for="message">Opis projektu *</label>
           <textarea id="message" name="message" required placeholder="Opisz czego potrzebujesz – wymiary, materiały, styl..."></textarea>
         </div>
+        <p class="form-note">* Pola wymagane. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim.</p>
         <button type="submit" class="submit-btn">Wyślij zapytanie &rarr;</button>
       </form>
       <div class="form-success" id="formSuccess">
@@ -547,11 +650,35 @@
 </section>
 
 <footer>
-  &copy; 2026 <strong>MikuMeble</strong>. Wszystkie prawa zastrzeżone.
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">MikuMeble<small>meble na wymiar</small></div>
+      <p>Projektujemy, wykonujemy i montujemy meble na wymiar. Jakość rzemiosła, nowoczesny design i pełne zaangażowanie w każdy projekt.</p>
+    </div>
+    <div>
+      <h4>Menu</h4>
+      <ul class="footer-links">
+        <li><a href="#o-nas">O nas</a></li>
+        <li><a href="#oferta">Oferta</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <ul class="footer-links">
+        <li><a href="tel:+48600000000">📞 +48 600 000 000</a></li>
+        <li><a href="mailto:kontakt@mikumeble.pl">✉️ kontakt@mikumeble.pl</a></li>
+        <li>📍 ul. Stolarzy 12, Warszawa</li>
+        <li>🕐 Pon–Pt: 8–17, Sob: 9–13</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 MikuMeble. Wszystkie prawa zastrzeżone.</div>
 </footer>
 
 <script>
-  // Mobile menu
   document.getElementById('hamburger').addEventListener('click', () => {
     document.getElementById('navLinks').classList.toggle('open');
   });
@@ -559,26 +686,22 @@
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
   });
 
-  // Contact form
   document.getElementById('contactForm').addEventListener('submit', e => {
     e.preventDefault();
     document.getElementById('contactForm').style.display = 'none';
     document.getElementById('formSuccess').classList.add('show');
   });
 
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.15 });
   reveals.forEach(el => observer.observe(el));
 
-  // Gallery lightbox
   const thumbs = document.querySelectorAll('.gallery-thumb');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   let currentIdx = 0;
-
   const galleryImages = Array.from(thumbs).map(t => t.querySelector('img').src.replace(/w=\d+&h=\d+/, 'w=1200&h=1600'));
 
   thumbs.forEach(t => {
@@ -597,7 +720,6 @@
 
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-
   document.getElementById('lightboxPrev').addEventListener('click', e => {
     e.stopPropagation();
     currentIdx = (currentIdx - 1 + galleryImages.length) % galleryImages.length;
@@ -608,7 +730,6 @@
     currentIdx = (currentIdx + 1) % galleryImages.length;
     lightboxImg.src = galleryImages[currentIdx];
   });
-
   document.addEventListener('keydown', e => {
     if (!lightbox.classList.contains('open')) return;
     if (e.key === 'Escape') closeLightbox();
