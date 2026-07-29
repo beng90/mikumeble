@@ -463,7 +463,7 @@
   <h2 class="section-title">Nasze realizacje</h2>
   <p class="section-subtitle">Wybrane projekty, z których jesteśmy szczególnie dumni.</p>
   <div class="portfolio-grid">
-    <div class="portfolio-item tall reveal">
+    <div class="portfolio-item tall reveal" data-portfolio="0">
       <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=900&fit=crop" alt="Kuchnia">
       <div class="portfolio-overlay">
         <span class="tag">Kuchnia</span>
@@ -471,7 +471,7 @@
         <p>Biały lakier, blat dębowy, oświetlenie LED</p>
       </div>
     </div>
-    <div class="portfolio-item reveal">
+    <div class="portfolio-item reveal" data-portfolio="1">
       <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=450&fit=crop" alt="Salon">
       <div class="portfolio-overlay">
         <span class="tag">Salon</span>
@@ -479,7 +479,7 @@
         <p>Styl skandynawski, naturalne drewno</p>
       </div>
     </div>
-    <div class="portfolio-item reveal">
+    <div class="portfolio-item reveal" data-portfolio="2">
       <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&h=450&fit=crop" alt="Szafa">
       <div class="portfolio-overlay">
         <span class="tag">Garderoba</span>
@@ -487,7 +487,7 @@
         <p>Drzwi przesuwne, oświetlenie wewnętrzne</p>
       </div>
     </div>
-    <div class="portfolio-item reveal">
+    <div class="portfolio-item reveal" data-portfolio="3">
       <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&h=450&fit=crop" alt="Łazienka">
       <div class="portfolio-overlay">
         <span class="tag">Łazienka</span>
@@ -495,7 +495,7 @@
         <p>Blat z kamienia, wodoodporne wykończenie</p>
       </div>
     </div>
-    <div class="portfolio-item tall reveal">
+    <div class="portfolio-item tall reveal" data-portfolio="4">
       <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&h=900&fit=crop" alt="Sypialnia">
       <div class="portfolio-overlay">
         <span class="tag">Sypialnia</span>
@@ -503,11 +503,11 @@
         <p>Łóżko tapicerowane, szafki nocne, komoda</p>
       </div>
     </div>
-    <div class="portfolio-item reveal">
+    <div class="portfolio-item reveal" data-portfolio="5">
       <img src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=600&h=450&fit=crop" alt="Biuro">
       <div class="portfolio-overlay">
         <span class="tag">Biuro</span>
-        <h3>Biuro domowe</h3>
+        <h3>Biurko narożne z regałami</h3>
         <p>Biurko narożne z regałami</p>
       </div>
     </div>
@@ -698,19 +698,31 @@
   }, { threshold: 0.15 });
   reveals.forEach(el => observer.observe(el));
 
-  const thumbs = document.querySelectorAll('.gallery-thumb');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   let currentIdx = 0;
-  const galleryImages = Array.from(thumbs).map(t => t.querySelector('img').src.replace(/w=\d+&h=\d+/, 'w=1200&h=1600'));
+  let activeSet = [];
 
+  function openLightbox(images, idx) {
+    activeSet = images;
+    currentIdx = idx;
+    lightboxImg.src = activeSet[currentIdx];
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Portfolio lightbox
+  const portfolioItems = document.querySelectorAll('[data-portfolio]');
+  const portfolioImages = Array.from(portfolioItems).map(p => p.querySelector('img').src.replace(/w=\d+&h=\d+/, 'w=1200&h=1600'));
+  portfolioItems.forEach(p => {
+    p.addEventListener('click', () => openLightbox(portfolioImages, parseInt(p.dataset.portfolio)));
+  });
+
+  // Gallery lightbox
+  const thumbs = document.querySelectorAll('.gallery-thumb');
+  const galleryImages = Array.from(thumbs).map(t => t.querySelector('img').src.replace(/w=\d+&h=\d+/, 'w=1200&h=1600'));
   thumbs.forEach(t => {
-    t.addEventListener('click', () => {
-      currentIdx = parseInt(t.dataset.idx);
-      lightboxImg.src = galleryImages[currentIdx];
-      lightbox.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
+    t.addEventListener('click', () => openLightbox(galleryImages, parseInt(t.dataset.idx)));
   });
 
   function closeLightbox() {
@@ -722,13 +734,13 @@
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
   document.getElementById('lightboxPrev').addEventListener('click', e => {
     e.stopPropagation();
-    currentIdx = (currentIdx - 1 + galleryImages.length) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentIdx];
+    currentIdx = (currentIdx - 1 + activeSet.length) % activeSet.length;
+    lightboxImg.src = activeSet[currentIdx];
   });
   document.getElementById('lightboxNext').addEventListener('click', e => {
     e.stopPropagation();
-    currentIdx = (currentIdx + 1) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentIdx];
+    currentIdx = (currentIdx + 1) % activeSet.length;
+    lightboxImg.src = activeSet[currentIdx];
   });
   document.addEventListener('keydown', e => {
     if (!lightbox.classList.contains('open')) return;
